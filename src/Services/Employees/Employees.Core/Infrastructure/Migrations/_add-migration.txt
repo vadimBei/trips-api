@@ -1,0 +1,7 @@
+﻿NOTE: execute in Tools -> NuGet Package Manager -> Pakage Manager Console
+
+add-migration entity_description -p Employees.Core -c ApplicationDbContext -o Infrastructure\Migrations
+
+remove-migration -p Employees.Core
+
+update-database -p Employees.Core

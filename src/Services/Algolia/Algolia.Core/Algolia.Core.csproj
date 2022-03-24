@@ -7,12 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Common\Common.Data\Common.Data.csproj" />
-    <ProjectReference Include="..\..\..\Common\Common.Kernel\Common.Kernel.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Algolia.Search" Version="6.12.1" />
+    <ProjectReference Include="..\..\..\Common\Common.Data\Common.Data.csproj" />
+    <ProjectReference Include="..\..\..\Common\Common.Kernel\Common.Kernel.csproj" />
   </ItemGroup>
 
 </Project>

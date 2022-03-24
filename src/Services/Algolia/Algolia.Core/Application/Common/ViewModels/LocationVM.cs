@@ -1,4 +1,4 @@
-﻿using Algolia.Core.Domain.Models;
+﻿using Algolia.Core.Domain.Entities;
 using AutoMapper;
 
 namespace Algolia.Core.Application.Common.ViewModels

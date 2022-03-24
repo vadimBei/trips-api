@@ -1,4 +1,4 @@
-﻿namespace Algolia.Core.Domain.Models
+﻿namespace Algolia.Core.Domain.Entities
 {
     public class Location
     {

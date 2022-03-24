@@ -23,6 +23,8 @@ namespace Algolia.Core.Application.Algolias.Queries.SearchByName
             var locations = await _algoliaService
                 .SearchLocationsByName(request.Name, cancellationToken);
 
+            await _algoliaService.CreateLocations(locations, cancellationToken);
+
             var vm = _mapper.Map<List<LocationVM>>(locations);
             return vm;
         }

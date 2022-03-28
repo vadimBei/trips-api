@@ -1,0 +1,53 @@
+version: '3.4'
+
+services:
+ postgres-db:
+    image: postgres:14
+    container_name: postgres-db
+    restart: always
+    ports:
+      - "10100:5432"
+    environment:
+      POSTGRES_PASSWORD: 123258
+    
+ gateway.api:
+    image: ${DOCKER_REGISTRY-}gateway-api
+    build:
+      context: .
+      dockerfile: src/Gateway/Gateway.Api/Dockerfile
+    container_name: gateway-api
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Europe/Khmelnytskyi
+    ports:
+      - "11000:80"
+
+ algolia.api:
+    image: ${DOCKER_REGISTRY-}algolia-api
+    build:
+      context: .
+      dockerfile: src/Services/Algolia/Algolia.Api/Dockerfile
+    container_name: algolia-api
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Europe/Khmelnytskyi
+    ports:
+      - "20001:80"
+
+ employee.api:
+    image: ${DOCKER_REGISTRY-}employee-api
+    build: 
+      context: .
+      dockerfile: src/Services/Employees/Employees.Api/Dockerfile
+    container_name: employee-api
+    restart: always
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+      - TZ=Europe/Khmelnytskyi
+    ports:
+      - "20002:80"

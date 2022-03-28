@@ -4,19 +4,19 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:59992",
-      "sslPort": 44390
+      "applicationUrl": "http://localhost:33915",
+      "sslPort": 44350
     }
   },
   "profiles": {
-    "Algolia.Api": {
+    "Gateway.Api": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "https://localhost:7274;http://localhost:5274",
+      "applicationUrl": "https://localhost:7152;http://localhost:5152",
       "dotnetRunMessages": true
     },
     "IIS Express": {

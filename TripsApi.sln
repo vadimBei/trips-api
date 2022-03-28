@@ -27,9 +27,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common.Kernel", "src\Common
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Algolia", "Algolia", "{1E0ECC29-6C88-41D7-8436-14796E145578}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algolia.Api", "src\Services\Algolia\Algolia.Api\Algolia.Api.csproj", "{951E92B7-4F9E-499B-B9E2-7478D9617C65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algolia.Api", "src\Services\Algolia\Algolia.Api\Algolia.Api.csproj", "{951E92B7-4F9E-499B-B9E2-7478D9617C65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algolia.Core", "src\Services\Algolia\Algolia.Core\Algolia.Core.csproj", "{E5C2CF42-DA75-4854-90C9-8A22A3542484}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algolia.Core", "src\Services\Algolia\Algolia.Core\Algolia.Core.csproj", "{E5C2CF42-DA75-4854-90C9-8A22A3542484}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{D01E93C3-794D-428E-B2B4-A9434A566405}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway.Api", "src\Gateway\Gateway.Api\Gateway.Api.csproj", "{67A152AC-A155-475E-9DF8-B025079DDA94}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{28F631C7-0E2A-4C37-BE9C-C02B7CC5C81C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +75,14 @@ Global
 		{E5C2CF42-DA75-4854-90C9-8A22A3542484}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5C2CF42-DA75-4854-90C9-8A22A3542484}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5C2CF42-DA75-4854-90C9-8A22A3542484}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67A152AC-A155-475E-9DF8-B025079DDA94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67A152AC-A155-475E-9DF8-B025079DDA94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67A152AC-A155-475E-9DF8-B025079DDA94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67A152AC-A155-475E-9DF8-B025079DDA94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28F631C7-0E2A-4C37-BE9C-C02B7CC5C81C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28F631C7-0E2A-4C37-BE9C-C02B7CC5C81C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28F631C7-0E2A-4C37-BE9C-C02B7CC5C81C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28F631C7-0E2A-4C37-BE9C-C02B7CC5C81C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +101,8 @@ Global
 		{1E0ECC29-6C88-41D7-8436-14796E145578} = {E14F7B1E-383B-4F36-A345-60D7AB832836}
 		{951E92B7-4F9E-499B-B9E2-7478D9617C65} = {1E0ECC29-6C88-41D7-8436-14796E145578}
 		{E5C2CF42-DA75-4854-90C9-8A22A3542484} = {1E0ECC29-6C88-41D7-8436-14796E145578}
+		{D01E93C3-794D-428E-B2B4-A9434A566405} = {0A82B3C8-9CBA-4A54-A404-6579ABF0524D}
+		{67A152AC-A155-475E-9DF8-B025079DDA94} = {D01E93C3-794D-428E-B2B4-A9434A566405}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {468E6356-C23B-4716-8FE2-7E668058324A}

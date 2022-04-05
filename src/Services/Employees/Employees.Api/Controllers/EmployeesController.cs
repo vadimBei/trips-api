@@ -23,9 +23,13 @@ namespace Employees.Api.Controllers
                 Id = id
             });
 
-        [HttpGet("all")]
-        public async Task<PaginatedEmployeesVM> GetAllEmployees([FromQuery] GetAllEmployeesQuery query)
-            => await Mediator.Send(query);
+        [HttpGet("all/{pageIndex}/{pageSize}")]
+        public async Task<PaginatedEmployeesVM> GetAllEmployees(int pageIndex, int pageSize)
+            => await Mediator.Send(new GetAllEmployeesQuery()
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize
+            });
 
         [HttpDelete]
         public async Task DeleteEmployee(Guid id)

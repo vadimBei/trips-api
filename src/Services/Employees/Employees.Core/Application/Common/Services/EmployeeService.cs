@@ -76,20 +76,27 @@ namespace Employees.Core.Application.Common.Services
         {
             var entity = await _context.Employees
                  .SingleOrDefaultAsync(employee => employee.Id == dto.Id, cancellationToken);
-
-            if (entity == null)
+            try
             {
-                throw new NotFoundException(nameof(Employee), dto.Id);
+                if (entity == null)
+                {
+                    throw new NotFoundException(nameof(Employee), dto.Id);
+                }
+
+                entity.Name = dto.Name;
+                entity.LastName = dto.LastName;
+                entity.DateOfBirth = dto.DateOfBirth;
+                entity.Email = dto.Email;
+                entity.Phone = dto.Phone;
+                entity.Age = dto.Age;
+
+                await _context.SaveChangesAsync(cancellationToken);
+            }
+            catch (Exception ex)
+            {
+
             }
 
-            entity.Name = dto.Name;
-            entity.LastName = dto.LastName;
-            entity.DateOfBirth = dto.DateOfBirth;
-            entity.Email = dto.Email;
-            entity.Phone = dto.Phone;
-            entity.Age = dto.Age;
-
-            await _context.SaveChangesAsync(cancellationToken);
 
             return entity;
         }

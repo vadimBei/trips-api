@@ -9,23 +9,39 @@ import { EmployeesRepository } from '../../repositories/employees-repository/emp
 })
 export class EmployeesService {
   paginatedEmployees$ = new Subject<IPaginatedEmployees>();
+  employee$ = new Subject<IEmployee>();
 
   constructor(
     private employeesRepository: EmployeesRepository) { }
 
-  getEmployeeById(employeeId: string): Subject<IEmployee> {
-    let employee$ = new Subject<IEmployee>();
-
+  getEmployeeById(employeeId: string): void {
     this.employeesRepository.getEmployeeById(employeeId)
-      .pipe(take(1))
-      .subscribe(result => employee$.next(result));
-
-    return employee$;
+      .pipe(take(1),
+        tap(res => console.log(res)))
+      .subscribe(result => this.employee$.next(result));
   }
 
   getEmployees(pageIndex: number, pageSize: number): void {
     this.employeesRepository.getEmployees(pageIndex, pageSize)
-      .pipe(take(1))
+      .pipe(
+        tap(res => console.log(res)),
+        take(1))
       .subscribe(result => this.paginatedEmployees$.next(result));
+  }
+
+  createEmployee(employee: IEmployee): void {
+    this.employeesRepository.createEmployee(employee)
+      .pipe(
+        tap(res => console.log(res)),
+        take(1))
+      .subscribe();
+  }
+
+  updateEmployee(employee: IEmployee): void {
+    this.employeesRepository.updateEmployee(employee)
+      .pipe(
+        tap(res => console.log(res)),
+        take(1))
+      .subscribe()
   }
 }

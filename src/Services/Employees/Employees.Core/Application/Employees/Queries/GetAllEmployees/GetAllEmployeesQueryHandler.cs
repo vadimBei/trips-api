@@ -23,7 +23,17 @@ namespace Employees.Core.Application.Employees.Queries.GetAllEmployees
             var paginatedEmployees = await _employeeService
                 .GetEmployees(request.PageIndex, request.PageSize, cancellationToken);
 
-            return _mapper.Map<PaginatedEmployeesVM>(paginatedEmployees);
+            var vm = new PaginatedEmployeesVM();
+            try
+            {
+                vm = _mapper.Map<PaginatedEmployeesVM>(paginatedEmployees);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return vm;
         }
     }
 }

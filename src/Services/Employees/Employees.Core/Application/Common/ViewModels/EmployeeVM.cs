@@ -6,6 +6,8 @@ namespace Employees.Core.Application.Common.ViewModels
     [AutoMap(typeof(Employee))]
     public class EmployeeVM
     {
+        private DateTime dateOfBirth;
+
         public Guid Id { get; set; }
 
         public string Name { get; set; }
@@ -18,6 +20,10 @@ namespace Employees.Core.Application.Common.ViewModels
 
         public int Age { get; set; }
 
-        public DateTime? DateOfBirth { get; set; }
+        public DateTime DateOfBirth
+        {
+            get;
+            set;
+        }
     }
 }

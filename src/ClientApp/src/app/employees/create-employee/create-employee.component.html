@@ -1,7 +1,5 @@
 <div class="columns">
-    <div class="column is-one-fifth">
-    </div>
-    <div class="column is-one-quarter">
+    <div class="column is-half">
         <form [formGroup]="createEmployeeForm" (ngSubmit)="onSubmit()">
             <div class="field">
                 <label class="label">Name</label>
@@ -20,7 +18,8 @@
             <div class="field">
                 <label class="label">Email</label>
                 <div class="control has-icons-left">
-                    <input class="input is-rounded" type="email" placeholder="example@gmail.com" formControlName="email">
+                    <input class="input is-rounded" type="email" placeholder="example@gmail.com"
+                        formControlName="email">
                     <span class="icon is-small is-left">
                         <i class="fas fa-envelope"></i>
                     </span>
@@ -44,12 +43,12 @@
             <div class="field">
                 <label class="label">Date of birth</label>
                 <div class="control">
-                    <input class="input" type="date" formControlName="dateOfBirth">
+                    <input class="input is-rounded" type="date" formControlName="dateOfBirth">
                 </div>
             </div>
 
             <div class="buttons">
-                <button class="button is-medium is-primary" type="submit">Create</button>
+                <button class="button is-primary is-rounded" type="submit">Create</button>
             </div>
         </form>
     </div>

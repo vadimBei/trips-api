@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
-import { IPaginatedEmployees } from 'src/app/shared/interfaces/employees/IPaginatedEmployees';
 import { EmployeesService } from '../services/employees-service/employees.service';
 
 @Component({
@@ -22,6 +20,10 @@ export class EmployeesListComponent implements OnInit {
 
   getEmployees() {
     this.employeeService.getEmployees(1, 10);
+  }
+
+  deleteEmployee(employeeId: string){
+    this.employeeService.deleteEmployee(employeeId);
   }
 
   ngOnDestroy(): void {

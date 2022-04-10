@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import * as moment from 'moment';
+import { ActivatedRoute } from '@angular/router';
 
 import { IEmployee } from 'src/app/shared/interfaces/employees/IEmployee';
 import { EmployeesService } from '../services/employees-service/employees.service';
@@ -14,6 +15,8 @@ export class UpdateEmployeeComponent implements OnInit {
 
   employee$ = this.employeesService.employee$;
 
+  employeeId = "";
+
   updateEmployeeForm = new FormGroup({
     name: new FormControl(),
     lastName: new FormControl(),
@@ -23,14 +26,17 @@ export class UpdateEmployeeComponent implements OnInit {
     dateOfBirth: new FormControl()
   });
 
-  employeeId = "";
-
   constructor(
+    private activatedRoute: ActivatedRoute,
     private employeesService: EmployeesService
   ) { }
 
   ngOnInit(): void {
-    this.getEmployee();
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.employeeId = params['id'];
+    });
+
+    this.getEmployee(this.employeeId);
 
     this.employee$
       .subscribe(res => {
@@ -47,8 +53,10 @@ export class UpdateEmployeeComponent implements OnInit {
       });
   }
 
-  getEmployee() {
-    this.employeesService.getEmployeeById("68e4fff6-f4cb-496f-9cae-c69d4268b332");
+  getEmployee(employeeId: string) {
+    debugger;
+
+    this.employeesService.getEmployeeById(employeeId);
   }
 
   onSubmit(): void {

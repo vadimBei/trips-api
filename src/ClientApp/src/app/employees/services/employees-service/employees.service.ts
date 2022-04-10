@@ -1,7 +1,9 @@
-import { Observable, Subject, take, tap } from 'rxjs';
+import { Subject, take, tap } from 'rxjs';
 import { Injectable } from '@angular/core';
+
 import { IEmployee } from 'src/app/shared/interfaces/employees/IEmployee';
 import { IPaginatedEmployees } from 'src/app/shared/interfaces/employees/IPaginatedEmployees';
+
 import { EmployeesRepository } from '../../repositories/employees-repository/employees-repository';
 
 @Injectable({
@@ -42,6 +44,12 @@ export class EmployeesService {
       .pipe(
         tap(res => console.log(res)),
         take(1))
-      .subscribe()
+      .subscribe();
+  }
+
+  deleteEmployee(employeeId: string): void {
+    this.employeesRepository.deleteEmployee(employeeId)
+      .pipe(take(1))
+      .subscribe();
   }
 }

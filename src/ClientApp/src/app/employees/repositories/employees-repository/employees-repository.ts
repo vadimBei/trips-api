@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { catchError, Observable, take, of, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { IEmployee } from 'src/app/shared/interfaces/employees/IEmployee';
 import { EmployeeRoutes } from 'src/app/shared/enums/routes/EmoloyeeRoutes';
@@ -19,10 +19,14 @@ export class EmployeesRepository {
   }
 
   getEmployees(pageIndex: number, pageSize: number): Observable<IPaginatedEmployees> {
-    let params = `${pageIndex}/${pageSize}`;
-
     return this.httpClient.get<IPaginatedEmployees>(
-      this.gatewayUrl + EmployeeRoutes.GetEmployees + params);
+      this.gatewayUrl + EmployeeRoutes.GetEmployees,
+      {
+        params: {
+          pageIndex: pageIndex,
+          pageSize: pageSize
+        }
+      });
   }
 
   createEmployee(employee: IEmployee): Observable<IEmployee> {
@@ -35,5 +39,15 @@ export class EmployeesRepository {
     return this.httpClient.post<IEmployee>(
       this.gatewayUrl + EmployeeRoutes.UpdateEmployee,
       employee);
+  }
+
+  deleteEmployee(employeeId: string): Observable<Object> {
+    return this.httpClient.delete(
+      this.gatewayUrl + EmployeeRoutes.DeleteEmployee,
+      {
+        params: {
+          id: employeeId
+        }
+      });
   }
 }

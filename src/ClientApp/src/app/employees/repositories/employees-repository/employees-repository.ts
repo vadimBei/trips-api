@@ -50,4 +50,16 @@ export class EmployeesRepository {
         }
       });
   }
+
+  searchEmployees(pattern: string, pageIndex: number, pageSize: number): Observable<IPaginatedEmployees> {
+    return this.httpClient.get<IPaginatedEmployees>(
+      this.gatewayUrl + EmployeeRoutes.SearchEmployees,
+      {
+        params: {
+          pattern: pattern,
+          pageIndex: pageIndex,
+          pageSize: pageSize
+        }
+      });
+  }
 }

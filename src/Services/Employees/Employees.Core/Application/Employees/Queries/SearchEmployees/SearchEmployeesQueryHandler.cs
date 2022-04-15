@@ -3,25 +3,24 @@ using Employees.Core.Application.Common.Interfaces;
 using Employees.Core.Application.Common.ViewModels;
 using MediatR;
 
-namespace Employees.Core.Application.Employees.Queries.GetAllEmployees
+namespace Employees.Core.Application.Employees.Queries.SearchEmployees
 {
-    public class GetAllEmployeesQueryHandler : IRequestHandler<GetAllEmployeesQuery, PaginatedEmployeesVM>
+    public class SearchEmployeesQueryHandler : IRequestHandler<SearchEmployeesQuery, PaginatedEmployeesVM>
     {
         private readonly IMapper _mapper;
         private readonly IEmployeeService _employeeService;
 
-        public GetAllEmployeesQueryHandler(
+        public SearchEmployeesQueryHandler(
             IMapper mapper
             , IEmployeeService employeeService)
         {
             _mapper = mapper;
             _employeeService = employeeService;
         }
-
-        public async Task<PaginatedEmployeesVM> Handle(GetAllEmployeesQuery request, CancellationToken cancellationToken)
+        public async Task<PaginatedEmployeesVM> Handle(SearchEmployeesQuery request, CancellationToken cancellationToken)
         {
             var paginatedEmployees = await _employeeService
-                .GetEmployees(request.PageIndex, request.PageSize, cancellationToken);
+                .SearchEmployees(request.Pattern, request.PageIndex, request.PageSize, cancellationToken);
 
             return _mapper.Map<PaginatedEmployeesVM>(paginatedEmployees);
         }

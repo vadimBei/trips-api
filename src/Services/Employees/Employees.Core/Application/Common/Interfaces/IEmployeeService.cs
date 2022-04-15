@@ -15,5 +15,7 @@ namespace Employees.Core.Application.Common.Interfaces
         Task DeleteEmployee(Guid id, CancellationToken cancellationToken);
 
         Task<PaginatedList<Employee>> GetEmployees(int pageIndex, int pageSize, CancellationToken cancellationToken);  
+    
+        Task<PaginatedList<Employee>> SearchEmployees(string pattern, int pageIndex, int pageSize, CancellationToken cancellationToken);
     }
 }

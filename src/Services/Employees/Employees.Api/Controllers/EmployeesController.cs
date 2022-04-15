@@ -5,6 +5,7 @@ using Employees.Core.Application.Employees.Commands.DeleteEmployee;
 using Employees.Core.Application.Employees.Commands.UpdateEmployee;
 using Employees.Core.Application.Employees.Queries.GetAllEmployees;
 using Employees.Core.Application.Employees.Queries.GetEmployeeById;
+using Employees.Core.Application.Employees.Queries.SearchEmployees;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employees.Api.Controllers
@@ -41,5 +42,14 @@ namespace Employees.Api.Controllers
         [HttpPost("update")]
         public async Task<EmployeeVM> UpdateEmployee(UpdateEmployeeCommand command)
             => await Mediator.Send(command);
+
+        [HttpGet("search")]
+        public async Task<PaginatedEmployeesVM> SearchEmployee(int pageIndex, int pageSize, string? pattern = "")
+            => await Mediator.Send(new SearchEmployeesQuery()
+            {
+                Pattern = pattern,
+                PageIndex = pageIndex,
+                PageSize = pageSize
+            });
     }
 }

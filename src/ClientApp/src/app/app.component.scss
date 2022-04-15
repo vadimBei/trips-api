@@ -1,1 +1,22 @@
-@import 'bulma/css/bulma.css';
+.my-container {
+
+  .menu {
+    height: 100%; 
+    z-index: 1; 
+    position: fixed;
+    left: 0;
+    overflow-x: hidden; 
+    padding-top: 20px; 
+    transition: 0.5s; 
+    width: 15em;
+    float: left;
+    background-color: #3e8ed0;
+  }
+
+  .ribbon {
+    margin-left: 15em;
+    width: 80%;
+    float: left;
+    padding: 0em 4em;
+  }
+}

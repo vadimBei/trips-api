@@ -1,0 +1,27 @@
+<aside class="menu">
+    <p class="menu-label">
+        General
+    </p>
+    <ul class="menu-list">
+        <li>
+            <a>Trips</a>
+        </li>
+    </ul>
+    <p class="menu-label">
+        Administration
+    </p>
+    <ul class="menu-list">
+        <li>
+            <a [routerLink]="['/employees/all']">
+                    Employees
+            </a>
+            <ul>
+                <li>
+                    <a [routerLink]="['/employees/create']">
+                        Create employee
+                    </a>
+                </li>
+              </ul>
+        </li>
+    </ul>
+</aside>

@@ -1,38 +1,55 @@
+<div>
+    <input class="search input is-rounded" 
+        placeholder="Search" 
+        type="search"
+        #search>
+</div>
+
 <div *ngIf="paginatedEmployees$ | async as paginatedEmployees">
     <div *ngFor="let employee of paginatedEmployees.items">
         <div class="card">
-
             <div class="card-content">
-                <div class="media">
-                    <div class="media-left">
-                        <figure class="image is-48x48">
-                            <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                        </figure>
-                    </div>
+                <div class="level">
+                    <div class="level-left">
+                        <div class="media">
+                            <div class="media-left">
+                                <figure class="image is-48x48">
+                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+                                </figure>
+                            </div>
 
-                    <div class="media-content">
-                        <p class="title is-4">{{employee.lastName}} {{employee.name}} </p>
+                            <div class="media-content">
+                                <p class="title is-4">{{employee.lastName}} {{employee.name}} </p>
 
-                        <p class="subtitle is-6">{{employee.email}}</p>
-                    </div>
-                </div>
-            </div>
-
-            <footer class="card-footer">
-                <div class="columns">
-                    <div class="column is-half">
-                        <div class="buttons">
-                            <button class="button is-primary is-rounded" type="submit">Edit</button>
+                                <p class="subtitle is-6">{{employee.email}}</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="column is-half">
-                        <div class="buttons">
+
+                    <div class="level-right">
+                        <div class="buttons level-item">
+                            <button class="button is-info is-rounded" [routerLink]="['/employees/update']"
+                                [queryParams]="{id: employee.id}" type="submit">Edit</button>
+
                             <button class="button is-danger is-rounded" type="submit"
                                 (click)="deleteEmployee(employee.id)">Delete</button>
                         </div>
                     </div>
                 </div>
-            </footer>
+
+            </div>
         </div>
     </div>
+
+    <nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">
+        <button class="pagination-previous is-rounded" (click)="previousPage(paginatedEmployees.pageIndex - 1)"
+            [disabled]="!hasPreviousPage">
+            Previous
+        </button>
+
+        <button class="pagination-next is-rounded" (click)="nextPage(paginatedEmployees.pageIndex + 1)"
+            [disabled]="!hasNextPage">
+            Next page
+        </button>
+    </nav>
 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import * as moment from 'moment';
 import { ActivatedRoute } from '@angular/router';
+import { tap } from 'rxjs';
 
 import { IEmployee } from 'src/app/shared/interfaces/employees/IEmployee';
 import { EmployeesService } from '../services/employees-service/employees.service';
@@ -12,9 +13,6 @@ import { EmployeesService } from '../services/employees-service/employees.servic
   styleUrls: ['./update-employee.component.scss']
 })
 export class UpdateEmployeeComponent implements OnInit {
-
-  employee$ = this.employeesService.employee$;
-
   employeeId = "";
 
   updateEmployeeForm = new FormGroup({
@@ -25,6 +23,22 @@ export class UpdateEmployeeComponent implements OnInit {
     age: new FormControl(),
     dateOfBirth: new FormControl()
   });
+
+  employee$ = this.employeesService.employee$
+    .pipe(
+      tap(res => {
+        this.updateEmployeeForm.setValue({
+          name: res.name,
+          lastName: res.lastName,
+          email: res.email,
+          phone: res.phone,
+          age: res.age,
+          dateOfBirth: moment(res.dateOfBirth).format('yyyy-MM-DD')
+        });
+
+        this.employeeId = res.id;
+      })
+    );
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -37,25 +51,9 @@ export class UpdateEmployeeComponent implements OnInit {
     });
 
     this.getEmployee(this.employeeId);
-
-    this.employee$
-      .subscribe(res => {
-        this.updateEmployeeForm.setValue({
-          name: res.name,
-          lastName: res.lastName,
-          email: res.email,
-          phone: res.phone,
-          age: res.age,
-          dateOfBirth: moment(res.dateOfBirth).format('yyyy-MM-DD')
-        });
-
-        this.employeeId = res.id;
-      });
   }
 
   getEmployee(employeeId: string) {
-    debugger;
-
     this.employeesService.getEmployeeById(employeeId);
   }
 
@@ -65,11 +63,6 @@ export class UpdateEmployeeComponent implements OnInit {
 
   updateEmployee(employee: IEmployee): void {
     employee.id = this.employeeId;
-
     this.employeesService.updateEmployee(employee);
-  }
-
-  ngOnDestroy(): void {
-    this.employee$.unsubscribe();
   }
 }

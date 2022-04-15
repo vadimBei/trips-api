@@ -7,6 +7,10 @@ import { UpdateEmployeeComponent } from './update-employee/update-employee.compo
 
 const routes: Routes = [
   {
+    path: '',
+    component: EmployeesListComponent
+  },
+  {
     path: 'all',
     component: EmployeesListComponent
   },

@@ -6,6 +6,13 @@ const routes: Routes = [
     path: '',
     children: [
       {
+        path: '',
+        loadChildren: () =>
+          import('./employees/employees.module').then((m) => {
+            return m.EmployeesModule;
+          })
+      },
+      {
         path: 'employees',
         loadChildren: () =>
           import('./employees/employees.module').then((m) => {

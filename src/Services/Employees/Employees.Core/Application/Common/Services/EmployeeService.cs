@@ -66,8 +66,26 @@ namespace Employees.Core.Application.Common.Services
 
         public async Task<PaginatedList<Employee>> GetEmployees(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
-            var entities = _context.Employees
-                .AsQueryable();
+            var entities = _context.Employees;
+
+            return await PaginatedList<Employee>.CreateAsync(entities, pageIndex, pageSize);
+        }
+
+        public async Task<PaginatedList<Employee>> SearchEmployees(string pattern, int pageIndex, int pageSize, CancellationToken cancellationToken)
+        {
+            IQueryable<Employee> entities;
+            if (string.IsNullOrEmpty(pattern))
+            {
+                entities = _context.Employees;
+            }
+            else
+            {
+                entities = _context.Employees
+                               .Where(employee => EF.Functions.Like(
+                                                       (employee.LastName + " " + employee.Name).ToLower(),
+                                                       $"%{pattern.ToLower()}%"));
+            }
+
 
             return await PaginatedList<Employee>.CreateAsync(entities, pageIndex, pageSize);
         }
@@ -76,27 +94,20 @@ namespace Employees.Core.Application.Common.Services
         {
             var entity = await _context.Employees
                  .SingleOrDefaultAsync(employee => employee.Id == dto.Id, cancellationToken);
-            try
+
+            if (entity == null)
             {
-                if (entity == null)
-                {
-                    throw new NotFoundException(nameof(Employee), dto.Id);
-                }
-
-                entity.Name = dto.Name;
-                entity.LastName = dto.LastName;
-                entity.DateOfBirth = dto.DateOfBirth;
-                entity.Email = dto.Email;
-                entity.Phone = dto.Phone;
-                entity.Age = dto.Age;
-
-                await _context.SaveChangesAsync(cancellationToken);
-            }
-            catch (Exception ex)
-            {
-
+                throw new NotFoundException(nameof(Employee), dto.Id);
             }
 
+            entity.Name = dto.Name;
+            entity.LastName = dto.LastName;
+            entity.DateOfBirth = dto.DateOfBirth;
+            entity.Email = dto.Email;
+            entity.Phone = dto.Phone;
+            entity.Age = dto.Age;
+
+            await _context.SaveChangesAsync(cancellationToken);
 
             return entity;
         }

@@ -8,9 +8,11 @@ import { HttpClientModule } from '@angular/common/http'
 
 
 import { EmployeesModule } from './employees/employees.module';
+import { MenuComponent } from './menu/menu.component';
 @NgModule({
   declarations: [
     AppComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,

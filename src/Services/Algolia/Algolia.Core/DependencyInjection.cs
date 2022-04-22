@@ -3,6 +3,7 @@ using Algolia.Core.Application.Common.Services;
 using Algolia.Core.Infrastructure;
 using Algolia.Core.Infrastructure.Repositories;
 using Common.Data;
+using Common.Data.WebClient;
 using Common.Kernel;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -17,13 +18,14 @@ namespace Algolia.Core
         {
             services.AddKernel(Assembly.GetExecutingAssembly(), configuration);
             services.AddData(Assembly.GetExecutingAssembly(), configuration);
+            services.AddWebClient(configuration);
 
             // add infrastructure
             services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseNpgsql(
                         configuration.GetConnectionString("DefaultConnection"),
                         b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-
+             
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
             // add application services

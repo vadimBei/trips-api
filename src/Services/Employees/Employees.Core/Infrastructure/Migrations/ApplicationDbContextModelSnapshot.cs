@@ -32,13 +32,13 @@ namespace Employees.Core.Infrastructure.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime?>("DateOfBirth")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("DateOfCreation")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateOfModification")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Email")
                         .HasColumnType("text");
@@ -63,7 +63,7 @@ namespace Employees.Core.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e673021a-bb5b-4031-a1ba-5c6ac6e73037"),
+                            Id = new Guid("68e4fff6-f4cb-496f-9cae-c69d4268b332"),
                             Age = 22,
                             DateOfCreation = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "bey1705@gmail.com",

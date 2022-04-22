@@ -5,6 +5,7 @@ using Employees.Core.Application.Employees.Commands.DeleteEmployee;
 using Employees.Core.Application.Employees.Commands.UpdateEmployee;
 using Employees.Core.Application.Employees.Queries.GetAllEmployees;
 using Employees.Core.Application.Employees.Queries.GetEmployeeById;
+using Employees.Core.Application.Employees.Queries.SearchEmployees;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Employees.Api.Controllers
@@ -24,10 +25,14 @@ namespace Employees.Api.Controllers
             });
 
         [HttpGet("all")]
-        public async Task<PaginatedEmployeesVM> GetAllEmployees([FromQuery] GetAllEmployeesQuery query)
-            => await Mediator.Send(query);
+        public async Task<PaginatedEmployeesVM> GetAllEmployees(int pageIndex, int pageSize)
+            => await Mediator.Send(new GetAllEmployeesQuery()
+            {
+                PageIndex = pageIndex,
+                PageSize = pageSize
+            });
 
-        [HttpDelete]
+        [HttpDelete("delete")]
         public async Task DeleteEmployee(Guid id)
             => await Mediator.Send(new DeleteEmployeeCommand()
             {
@@ -37,5 +42,14 @@ namespace Employees.Api.Controllers
         [HttpPost("update")]
         public async Task<EmployeeVM> UpdateEmployee(UpdateEmployeeCommand command)
             => await Mediator.Send(command);
+
+        [HttpGet("search")]
+        public async Task<PaginatedEmployeesVM> SearchEmployee(int pageIndex, int pageSize, string? pattern = "")
+            => await Mediator.Send(new SearchEmployeesQuery()
+            {
+                Pattern = pattern,
+                PageIndex = pageIndex,
+                PageSize = pageSize
+            });
     }
 }

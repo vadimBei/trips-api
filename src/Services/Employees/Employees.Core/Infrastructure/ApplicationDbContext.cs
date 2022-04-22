@@ -16,6 +16,7 @@ namespace Employees.Core.Infrastructure
         public ApplicationDbContext(DbContextOptions options) 
             : base(options)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

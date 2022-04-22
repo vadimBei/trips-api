@@ -11,7 +11,7 @@ namespace Common.Kernel
         {
             // register common components
             services.AddMediatR(executingAssembly, Assembly.GetExecutingAssembly());
-
+            
             return services;
         }
     }

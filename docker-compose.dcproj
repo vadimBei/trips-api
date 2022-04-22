@@ -3,10 +3,10 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>28f631c7-0e2a-4c37-be9c-c02b7cc5c81c</ProjectGuid>
+    <ProjectGuid>ff2566e0-bb01-4052-874f-2e64fdee4ade</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
-    <DockerServiceName>gateway.api</DockerServiceName>
+    <DockerServiceName>algolia.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
     <None Include="docker-compose.yml" />

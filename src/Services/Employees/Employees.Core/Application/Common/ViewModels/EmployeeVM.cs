@@ -18,6 +18,6 @@ namespace Employees.Core.Application.Common.ViewModels
 
         public int Age { get; set; }
 
-        public DateTime? DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
     }
 }

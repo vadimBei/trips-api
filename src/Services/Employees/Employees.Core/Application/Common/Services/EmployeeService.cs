@@ -66,8 +66,26 @@ namespace Employees.Core.Application.Common.Services
 
         public async Task<PaginatedList<Employee>> GetEmployees(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
-            var entities = _context.Employees
-                .AsQueryable();
+            var entities = _context.Employees;
+
+            return await PaginatedList<Employee>.CreateAsync(entities, pageIndex, pageSize);
+        }
+
+        public async Task<PaginatedList<Employee>> SearchEmployees(string pattern, int pageIndex, int pageSize, CancellationToken cancellationToken)
+        {
+            IQueryable<Employee> entities;
+            if (string.IsNullOrEmpty(pattern))
+            {
+                entities = _context.Employees;
+            }
+            else
+            {
+                entities = _context.Employees
+                               .Where(employee => EF.Functions.Like(
+                                                       (employee.LastName + " " + employee.Name).ToLower(),
+                                                       $"%{pattern.ToLower()}%"));
+            }
+
 
             return await PaginatedList<Employee>.CreateAsync(entities, pageIndex, pageSize);
         }

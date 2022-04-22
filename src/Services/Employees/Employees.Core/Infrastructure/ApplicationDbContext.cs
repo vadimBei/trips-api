@@ -33,7 +33,7 @@ namespace Employees.Core.Infrastructure
                 {
                     new Employee()
                     {
-                        Id = Guid.NewGuid(),
+                        Id = Guid.Parse("0059e695-f8fd-442f-ac01-850f898057ff"),
                         Name = "Vadym",
                         LastName = "Bei",
                         Age = 22,

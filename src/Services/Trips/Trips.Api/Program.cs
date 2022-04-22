@@ -1,8 +1,12 @@
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using Trips.Core;
+using Trips.Core.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCoreServices(builder.Configuration);
 
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
@@ -14,13 +18,17 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dataContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    dataContext.Database.Migrate();
+}
+
+// Configure the HTTP request pipeline.
 app.UseSwagger();
 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", builder.Environment.ApplicationName));
 
-app.UseHttpsRedirection();
-
 app.UseAuthorization();
-//app.UseAuthentication();
 
 app.MapControllers();
 

@@ -1,4 +1,6 @@
-﻿using Trips.Core.Domain.Enums;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using Trips.Core.Domain.Enums;
+using Trips.Core.Domain.Models;
 
 namespace Trips.Core.Domain.Entities
 {
@@ -18,7 +20,8 @@ namespace Trips.Core.Domain.Entities
 
         public long? ApprovedEmployeeId { get; set; }
 
-        //public Employee ApprovedEmployee { get; set; }
+        [NotMapped]
+        public Employee ApprovedEmployee { get; set; }
 
         public TripType Type { get; set; }
 
@@ -31,8 +34,6 @@ namespace Trips.Core.Domain.Entities
         public List<TripLocation> Locations { get; set; }
 
         public List<TripParticipant> Participants { get; set; }
-
-        public List<TripTripGoal> TripTripGoals { get; set; }
 
         public TripVehicleType VehicleType { get; set; }
     }

@@ -16,5 +16,11 @@ namespace Common.Data.Exceptions
             this.StatusCode = HttpStatusCode.NotFound;
             this.ErrorMessage = $"Entity \"{name}\" ({key}) was not found.";
         }
+
+        public NotFoundException(string message)
+        {
+            this.StatusCode = HttpStatusCode.NotFound;
+            this.ErrorMessage = message;
+        }
     }
 }

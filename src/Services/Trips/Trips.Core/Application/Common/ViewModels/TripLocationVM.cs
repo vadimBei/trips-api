@@ -1,6 +1,10 @@
-﻿namespace Trips.Core.Domain.Models
+﻿using AutoMapper;
+using Trips.Core.Domain.Models;
+
+namespace Trips.Core.Application.Common.ViewModels
 {
-    public class AlgoliaLocation
+    [AutoMap(typeof(AlgoliaLocation))]
+    public class TripLocationVM
     {
         public string ObjectID { get; set; }
 

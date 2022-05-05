@@ -9,7 +9,7 @@ namespace Trips.Core.Domain.Entities
 
         public long TripId { get; set; }
 
-        public long EmployeeId { get; set; }
+        public Guid EmployeeId { get; set; }
 
         [NotMapped]
         public Employee Employee { get; set; }

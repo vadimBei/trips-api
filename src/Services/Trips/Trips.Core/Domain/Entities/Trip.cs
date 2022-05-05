@@ -12,29 +12,32 @@ namespace Trips.Core.Domain.Entities
 
         public DateTime DateTo { get; set; }
 
-        public DateTime ApprovedDate { get; set; }
+        public DateTime? ApprovedDate { get; set; }
 
         public string Comment { get; set; }
 
         public string Goal { get; set; }
 
-        public long? ApprovedEmployeeId { get; set; }
-
-        [NotMapped]
-        public Employee ApprovedEmployee { get; set; }
+        public bool ApprovedByTripCurator { get; set; }
 
         public TripType Type { get; set; }
 
         public TripStatus Status { get; set; }
 
-        public bool ApprovedByTripCurator { get; set; }
+        public TripVehicleType VehicleType { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public Guid AuthorId { get; set; }
+
+        [NotMapped]
+        public Employee Author { get; set; }
+
+        public Guid? ApprovedEmployeeId { get; set; }
+
+        [NotMapped]
+        public Employee ApprovedEmployee { get; set; }
 
         public List<TripLocation> Locations { get; set; }
 
         public List<TripParticipant> Participants { get; set; }
-
-        public TripVehicleType VehicleType { get; set; }
     }
 }

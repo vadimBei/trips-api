@@ -7,6 +7,7 @@
         CompanyBus,
         Bus,
         Train,
-        Airplane
+        Airplane,
+        OwnCar
     }
 }

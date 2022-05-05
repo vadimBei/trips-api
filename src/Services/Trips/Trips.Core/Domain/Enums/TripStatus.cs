@@ -2,11 +2,8 @@
 {
     public enum TripStatus
     {
-        Created,
-        CompletelyFilled,
-        ApprovedByCurator,
+        Undefined,
         ApprovedByAdmin,
-        ApprovedByTripCurator,
         Rejected
     }
 }

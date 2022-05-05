@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using Trips.Core.Application.Common.Interfaces;
 using Trips.Core.Application.Common.Services;
+using Trips.Core.Application.Common.Strategies;
 using Trips.Core.Infrastructure;
 using Trips.Core.Infrastructure.Repositories;
 
@@ -29,10 +30,15 @@ namespace Trips.Core
             services.AddScoped<IApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
             // add application services
-            services.AddTransient<IAlgoliaService, AlgoliaService>();
+            services.AddTransient<IAlgoliaService, AlgoliaService>(); 
             services.AddTransient<IEmployeeService, EmployeeService>();
+            services.AddTransient<IMapperService, MapperService>();
+            services.AddTransient<ITripService, TripService>();
+            services.AddTransient<ISieveService, SieveService>();
+            services.AddTransient<ITripStrategy, EmployeeTripStrategy>();
+            services.AddTransient<ITripStrategy, AdminTripStrategy>();
 
-            //// add application repositories
+            // add application repositories
             services.AddTransient<IAlgoliaRepository, AlgoliaRepository>();
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
 

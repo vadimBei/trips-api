@@ -15,7 +15,7 @@ namespace Trips.Core.Infrastructure
 
         public ApplicationDbContext()
         {
-            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
         }
 
         public ApplicationDbContext(DbContextOptions options)

@@ -31,12 +31,12 @@ namespace Trips.Core
 
             // add application services
             services.AddTransient<IAlgoliaService, AlgoliaService>(); 
-            services.AddTransient<IEmployeeService, EmployeeService>();
             services.AddTransient<IMapperService, MapperService>();
-            services.AddTransient<ITripService, TripService>();
             services.AddTransient<ISieveService, SieveService>();
             services.AddTransient<ITripStrategy, EmployeeTripStrategy>();
             services.AddTransient<ITripStrategy, AdminTripStrategy>();
+            services.AddTransient<IEmployeeService, EmployeeService>();
+            services.AddTransient<ITripService, TripService>();
 
             // add application repositories
             services.AddTransient<IAlgoliaRepository, AlgoliaRepository>();

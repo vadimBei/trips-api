@@ -11,16 +11,6 @@ namespace Trips.Core.Application.Common.Services
 {
     public class TripService : ITripService
     {
-        private Employee currentEmployee = new Employee()
-        {
-            Id = Guid.Parse("0059e695-f8fd-442f-ac01-850f898057ff"),
-            Name = "Vadym",
-            LastName = "Bei",
-            Age = 22,
-            Email = "bey1705@gmail.com",
-            Phone = "380971234567"
-        };
-
         private ITripStrategy TripStrategy { get; set; }
 
         private readonly ISieveService _sieveService;
@@ -52,7 +42,7 @@ namespace Trips.Core.Application.Common.Services
             if (isCurrentUserAdmin)
                 TripStrategy = new AdminTripStrategy(_sieveService, _mapperService, _applicationDbContext);
             else
-                TripStrategy = new EmployeeTripStrategy(currentEmployee, _sieveService, _mapperService, _applicationDbContext);
+                TripStrategy = new EmployeeTripStrategy(_sieveService, _mapperService, _applicationDbContext);
         }
 
         public async Task ChangeTripStatus(long id, TripStatus status, CancellationToken cancellationToken)

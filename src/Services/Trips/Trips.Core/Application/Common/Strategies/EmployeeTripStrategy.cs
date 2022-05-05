@@ -11,20 +11,25 @@ namespace Trips.Core.Application.Common.Strategies
 {
     public class EmployeeTripStrategy : ITripStrategy
     {
-        private readonly Employee currentEmployee;
+        private readonly Employee currentEmployee = new Employee()
+        {
+            Id = Guid.Parse("0059e695-f8fd-442f-ac01-850f898057ff"),
+            Name = "Vadym",
+            LastName = "Bei",
+            Age = 22,
+            Email = "bey1705@gmail.com",
+            Phone = "380971234567"
+        };
 
         private readonly ISieveService _sieveService;
         private readonly IMapperService _mapperService;
         private readonly IApplicationDbContext _applicationDbContext;
 
         public EmployeeTripStrategy(
-            Employee currentEmployee
-            , ISieveService sieveService
+            ISieveService sieveService
             , IMapperService mapperService
             , IApplicationDbContext applicationDbContext)
         {
-            this.currentEmployee = currentEmployee;
-
             _mapperService = mapperService;
             _sieveService = sieveService;
             _applicationDbContext = applicationDbContext;
@@ -38,7 +43,7 @@ namespace Trips.Core.Application.Common.Strategies
         public async Task DeleteTrip(long tripId, CancellationToken cancellationToken)
         {
             var entity = await _applicationDbContext.Trips
-              .SingleOrDefaultAsync(trip => trip.Id == tripId 
+              .SingleOrDefaultAsync(trip => trip.Id == tripId
                                         && trip.AuthorId == currentEmployee.Id, cancellationToken);
 
             if (entity == null)

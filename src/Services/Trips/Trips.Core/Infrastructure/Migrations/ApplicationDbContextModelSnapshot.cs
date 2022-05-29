@@ -30,9 +30,6 @@ namespace Trips.Core.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<bool>("ApprovedByTripCurator")
-                        .HasColumnType("boolean");
-
                     b.Property<DateTime?>("ApprovedDate")
                         .HasColumnType("timestamp without time zone");
 

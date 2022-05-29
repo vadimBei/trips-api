@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Trips.Core.Domain.Enums;
 using Trips.Core.Domain.Models;
 
@@ -17,8 +18,6 @@ namespace Trips.Core.Domain.Entities
         public string Comment { get; set; }
 
         public string Goal { get; set; }
-
-        public bool ApprovedByTripCurator { get; set; }
 
         public TripType Type { get; set; }
 

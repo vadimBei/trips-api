@@ -33,7 +33,24 @@ namespace Trips.Core.Application.Common.Strategies
             if (entity == null)
                 throw new NotFoundException(nameof(Trip), id);
 
-            entity.Status = status;
+            switch (status)
+            {
+                case TripStatus.ApprovedByAdmin:
+                    {
+                        entity.Status = status;
+                        entity.ApprovedDate = DateTime.Now;
+
+                        break;
+                    }
+
+                case TripStatus.Rejected:
+                    {
+                        entity.Status = status;
+                        entity.ApprovedDate = null;
+
+                        break;
+                    }
+            }
 
             await _applicationDbContext.SaveChangesAsync(cancellationToken);
         }
@@ -54,7 +71,9 @@ namespace Trips.Core.Application.Common.Strategies
         public async Task<Trip> GetTripById(long id, CancellationToken cancellationToken)
         {
             var entity = await _applicationDbContext.Trips
-               .SingleOrDefaultAsync(trip => trip.Id == id, cancellationToken);
+                .Include(trip => trip.Participants)
+                .Include(trip => trip.Locations)
+                .SingleOrDefaultAsync(trip => trip.Id == id, cancellationToken);
 
             if (entity == null)
                 throw new NotFoundException(nameof(Trip), id);

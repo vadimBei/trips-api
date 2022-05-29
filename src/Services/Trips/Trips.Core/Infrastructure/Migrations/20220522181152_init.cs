@@ -18,15 +18,14 @@ namespace Trips.Core.Infrastructure.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     DateFrom = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     DateTo = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    ApprovedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    ApprovedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     Comment = table.Column<string>(type: "text", nullable: true),
                     Goal = table.Column<string>(type: "text", nullable: true),
-                    ApprovedEmployeeId = table.Column<long>(type: "bigint", nullable: true),
                     Type = table.Column<int>(type: "integer", nullable: false),
                     Status = table.Column<int>(type: "integer", nullable: false),
-                    ApprovedByTripCurator = table.Column<bool>(type: "boolean", nullable: false),
-                    IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     VehicleType = table.Column<int>(type: "integer", nullable: false),
+                    AuthorId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ApprovedEmployeeId = table.Column<Guid>(type: "uuid", nullable: true),
                     DateOfCreation = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     DateOfModification = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
@@ -64,7 +63,7 @@ namespace Trips.Core.Infrastructure.Migrations
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     TripId = table.Column<long>(type: "bigint", nullable: false),
-                    EmployeeId = table.Column<long>(type: "bigint", nullable: false),
+                    EmployeeId = table.Column<Guid>(type: "uuid", nullable: false),
                     DateOfCreation = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     DateOfModification = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },

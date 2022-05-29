@@ -13,11 +13,6 @@ namespace Trips.Core.Infrastructure
 
         public DbSet<TripParticipant> TripParticipants { get; set; }
 
-        public ApplicationDbContext()
-        {
-
-        }
-
         public ApplicationDbContext(DbContextOptions options)
             : base(options)
         {

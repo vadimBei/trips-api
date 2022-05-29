@@ -15,6 +15,6 @@ namespace Trips.Core.Application.Common.ViewModels
 
         public bool HasNextPage { get; set; }
 
-        public List<TripVM> Items { get; set; }
+        public List<TripVM> Items { get; set; } = new List<TripVM>();
     }
 }

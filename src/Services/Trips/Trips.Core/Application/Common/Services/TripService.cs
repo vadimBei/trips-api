@@ -82,6 +82,8 @@ namespace Trips.Core.Application.Common.Services
 
             await _applicationDbContext.SaveChangesAsync(cancellationToken);
 
+            entity = await this.AssambleTrip(entity, cancellationToken);
+
             return entity;
         }
 
@@ -91,7 +93,6 @@ namespace Trips.Core.Application.Common.Services
             {
                 var trips = _applicationDbContext.Trips
                    .Include(trip => trip.Participants)
-                       .ThenInclude(participant => participant.Employee)
                    .Where(trip => trip.Participants.Any(participant => participant.EmployeeId == employeeId));
 
                 var participantBuzy = trips.Any(trip => (dateFrom >= trip.DateFrom && dateTo <= trip.DateFrom)
@@ -99,6 +100,7 @@ namespace Trips.Core.Application.Common.Services
 
                 if (participantBuzy)
                 {
+                    throw new Exception($"{nameof(EmployeeTripStrategy)}. Participant is buzy.");
                     //throw new TripsForbiddenException($"{nameof(EmployeeTripStrategy)}. Participant is buzy.", 13);
                 }
             }
@@ -131,13 +133,17 @@ namespace Trips.Core.Application.Common.Services
         public async Task<PaginatedList<Trip>> GetApprovedTrips(int page, int limit, CancellationToken cancellationToken)
         {
             var trips = _applicationDbContext.Trips
-                .Where(t => t.ApprovedDate != DateTime.MinValue)
+                .Include(trip => trip.Participants)
+                .Include(trip => trip.Locations)
+                .Where(t => t.Status == TripStatus.ApprovedByAdmin)
                 .AsNoTracking();
 
             var paginatedTrips = await PaginatedList<Trip>.CreateAsync(trips, page, limit);
 
-            paginatedTrips.Items.ForEach(async trip =>
-                trip = await this.AssambleTrip(trip, cancellationToken));
+            for (int i = 0; i < paginatedTrips.Items.Count; i++)
+            {
+                paginatedTrips.Items[i] = await this.AssambleTrip(paginatedTrips.Items[i], cancellationToken);
+            }
 
             return paginatedTrips;
         }
@@ -172,8 +178,10 @@ namespace Trips.Core.Application.Common.Services
         {
             var paginatedTrips = await TripStrategy.GetTrips(filter, cancellationToken);
 
-            paginatedTrips.Items.ForEach(async trip =>
-                trip = await this.AssambleTrip(trip, cancellationToken));
+            for (int i = 0; i < paginatedTrips.Items.Count; i++)
+            {
+                paginatedTrips.Items[i] = await this.AssambleTrip(paginatedTrips.Items[i], cancellationToken);
+            }
 
             return paginatedTrips;
         }

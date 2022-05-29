@@ -12,7 +12,7 @@ using Trips.Core.Infrastructure;
 namespace Trips.Core.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220422143001_init")]
+    [Migration("20220522181152_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,14 +32,14 @@ namespace Trips.Core.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<bool>("ApprovedByTripCurator")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("ApprovedDate")
+                    b.Property<DateTime?>("ApprovedDate")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<long?>("ApprovedEmployeeId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid?>("ApprovedEmployeeId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AuthorId")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Comment")
                         .HasColumnType("text");
@@ -58,9 +58,6 @@ namespace Trips.Core.Infrastructure.Migrations
 
                     b.Property<string>("Goal")
                         .HasColumnType("text");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("boolean");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer");
@@ -117,8 +114,8 @@ namespace Trips.Core.Infrastructure.Migrations
                     b.Property<DateTime>("DateOfModification")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<long>("EmployeeId")
-                        .HasColumnType("bigint");
+                    b.Property<Guid>("EmployeeId")
+                        .HasColumnType("uuid");
 
                     b.Property<long>("TripId")
                         .HasColumnType("bigint");

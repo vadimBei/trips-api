@@ -1,7 +1,11 @@
-﻿using Trips.Core.Domain.Enums;
+﻿using AutoMapper;
+using AutoMapper.Configuration.Annotations;
+using Trips.Core.Domain.Entities;
+using Trips.Core.Domain.Enums;
 
 namespace Trips.Core.Application.Common.ViewModels
 {
+    [AutoMap(typeof(Trip))]
     public class TripVM
     {
         public long Id { get; set; }
@@ -26,8 +30,10 @@ namespace Trips.Core.Application.Common.ViewModels
 
         public EmployeeVM ApprovedEmployee { get; set; }
 
-        public List<TripLocationVM> Locations { get; set; }
+        [Ignore]
+        public List<TripLocationVM> Locations { get; set; } = new List<TripLocationVM>();
 
-        public List<TripParticipantVM> Participants { get; set; }
+        [Ignore]
+        public List<TripParticipantVM> Participants { get; set; } = new List<TripParticipantVM>();
     }
 }

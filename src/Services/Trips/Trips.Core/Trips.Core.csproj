@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,17 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Application\Common\Dtos\" />
-    <Folder Include="Application\Common\Interfaces\" />
-    <Folder Include="Application\Common\ViewModels\" />
-    <Folder Include="Application\Common\Services\" />
-    <Folder Include="Infrastructure\Configurations\" />
-    <Folder Include="Infrastructure\Migrations\" />
-    <Folder Include="Infrastructure\Repositories\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Common\Common.Data.WebClient\Common.Data.WebClient.csproj" />
+    <ProjectReference Include="..\..\..\Common\Common.Data\Common.Data.csproj" />
     <ProjectReference Include="..\..\..\Common\Common.Kernel\Common.Kernel.csproj" />
   </ItemGroup>
 

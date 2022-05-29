@@ -1,4 +1,7 @@
-﻿using Trips.Core.Domain.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Trips.Core.Domain.Enums;
+using Trips.Core.Domain.Models;
 
 namespace Trips.Core.Domain.Entities
 {
@@ -10,30 +13,30 @@ namespace Trips.Core.Domain.Entities
 
         public DateTime DateTo { get; set; }
 
-        public DateTime ApprovedDate { get; set; }
+        public DateTime? ApprovedDate { get; set; }
 
         public string Comment { get; set; }
 
         public string Goal { get; set; }
 
-        public long? ApprovedEmployeeId { get; set; }
-
-        //public Employee ApprovedEmployee { get; set; }
-
         public TripType Type { get; set; }
 
         public TripStatus Status { get; set; }
 
-        public bool ApprovedByTripCurator { get; set; }
+        public TripVehicleType VehicleType { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public Guid AuthorId { get; set; }
+
+        [NotMapped]
+        public Employee Author { get; set; }
+
+        public Guid? ApprovedEmployeeId { get; set; }
+
+        [NotMapped]
+        public Employee ApprovedEmployee { get; set; }
 
         public List<TripLocation> Locations { get; set; }
 
         public List<TripParticipant> Participants { get; set; }
-
-        public List<TripTripGoal> TripTripGoals { get; set; }
-
-        public TripVehicleType VehicleType { get; set; }
     }
 }

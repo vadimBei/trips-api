@@ -6,17 +6,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Algolia.Api.Controllers
 {
-    [Route("api/algolia")]
+    [Route("api/algolia/search")]
     public class AlgoliaController : ApiController
     {
-        [HttpGet("search/by-name")]
+        [HttpGet("by-name")]
         public async Task<List<LocationVM>> SearchByName(string name)
              => await Mediator.Send(new SearchByNameQuery()
              {
                  Name = name
              });
 
-        [HttpGet("search/by-objectId")]
+        [HttpGet("by-objectId")]
         public async Task<LocationVM> SearchByObjectId(string objectId)
             => await Mediator.Send(new SearchByObjectIdQuery()
             {

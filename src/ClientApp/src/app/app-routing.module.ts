@@ -8,8 +8,15 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./employees/employees.module').then((m) => {
-            return m.EmployeesModule;
+          import('./trips/trips.module').then((m) => {
+            return m.TripsModule;
+          })
+      },
+      {
+        path: 'trips',
+        loadChildren: () =>
+          import('./trips/trips.module').then((m) => {
+            return m.TripsModule;
           })
       },
       {

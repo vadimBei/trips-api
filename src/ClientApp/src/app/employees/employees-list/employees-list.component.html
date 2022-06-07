@@ -29,9 +29,11 @@
                     <div class="level-right">
                         <div class="buttons level-item">
                             <button class="button is-info is-rounded" [routerLink]="['/employees/update']"
-                                [queryParams]="{id: employee.id}" type="submit">Edit</button>
+                                [queryParams]="{id: employee.id}" type="submit">
+                                Edit
+                            </button>
 
-                            <button class="button is-danger is-rounded" type="submit"
+                            <button class="button is-info is-rounded" type="submit"
                                 (click)="deleteEmployee(employee.id)">Delete</button>
                         </div>
                     </div>

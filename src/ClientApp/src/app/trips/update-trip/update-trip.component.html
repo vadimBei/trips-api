@@ -1,0 +1,51 @@
+<div class="columns">
+    <div class="column is-half">
+        <form [formGroup]="updateTripForm" (ngSubmit)="onSubmit()">
+            <div class="field">
+                <label class="label">Vehicle type</label>
+                <div class="control">
+                    <div class="select is-rounded">
+                        <select formControlName="vehicleType">
+                          <option *ngFor="let vehicle of vehicleTypes"
+                            [value]="vehicle">{{vehicle}}</option>
+                        </select>
+                      </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Date from</label>
+                <div class="control">
+                    <input class="input is-rounded" type="date" formControlName="dateFrom">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Date to</label>
+                <div class="control">
+                    <input class="input is-rounded" type="date" formControlName="dateTo">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Goal</label>
+                <div class="control">
+                    <textarea class="input" formControlName="goal"></textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Comment</label>
+                <div class="control">
+                    <textarea class="input" formControlName="comment"></textarea>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button class="button is-info is-rounded" [routerLink]="['/trips/all']">Back</button>
+
+                <button class="button is-primary is-rounded" type="submit">Create</button>
+            </div>
+        </form>
+    </div>
+</div>

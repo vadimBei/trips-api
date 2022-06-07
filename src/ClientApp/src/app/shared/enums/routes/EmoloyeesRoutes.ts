@@ -1,4 +1,4 @@
-export enum EmployeeRoutes {
+export enum EmployeesRoutes {
     CreateEmployee = "api/employees/create",
     GetEmployeeById = "api/employees/by-id/",
     GetEmployees = "api/employees/all",

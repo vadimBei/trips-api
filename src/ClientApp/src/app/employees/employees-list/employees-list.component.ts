@@ -44,11 +44,11 @@ export class EmployeesListComponent implements OnInit {
       .subscribe();
   }
 
-  getEmployees(pageIndex: number) {
-    this.employeeService.getEmployees(pageIndex, 3);
+  getEmployees(pageIndex: number): void {
+    this.employeeService.getEmployees(pageIndex, 2);
   }
 
-  deleteEmployee(employeeId: string) {
+  deleteEmployee(employeeId: string): void {
     this.employeeService.deleteEmployee(employeeId);
   }
 

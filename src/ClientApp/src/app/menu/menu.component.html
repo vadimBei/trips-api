@@ -1,19 +1,27 @@
 <aside class="menu">
-    <p class="menu-label">
-        General
-    </p>
     <ul class="menu-list">
         <li>
-            <a>Trips</a>
+            <a [routerLink]="['/trips/all']">
+                Trips
+            </a>
+            <ul>
+                <li>
+                    <a [routerLink]="['/trips/create']">
+                        Create trip
+                    </a>
+                </li>
+                <li>
+                    <a [routerLink]="['/trips/approved']">
+                        Approved trips
+                    </a>
+                </li>
+            </ul>
         </li>
     </ul>
-    <p class="menu-label">
-        Administration
-    </p>
     <ul class="menu-list">
         <li>
             <a [routerLink]="['/employees/all']">
-                    Employees
+                Employees
             </a>
             <ul>
                 <li>
@@ -21,7 +29,7 @@
                         Create employee
                     </a>
                 </li>
-              </ul>
+            </ul>
         </li>
     </ul>
 </aside>

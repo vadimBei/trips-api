@@ -6,6 +6,8 @@ import { IEmployee } from 'src/app/shared/interfaces/employees/IEmployee';
 import { IPaginatedEmployees } from 'src/app/shared/interfaces/employees/IPaginatedEmployees';
 
 import { EmployeesRepository } from '../../repositories/employees-repository/employees-repository';
+import { ICreateEmployeeCommand } from '../../interfaces/commands/ICreateEmployeeCommand';
+import { IUpdateEmployeeCommand } from '../../interfaces/commands/IUpdateEmployeeCommand';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +35,7 @@ export class EmployeesService {
       .subscribe(result => this.paginatedEmployees$.next(result));
   }
 
-  createEmployee(employee: IEmployee): void {
+  createEmployee(employee: ICreateEmployeeCommand): void {
     this.employeesRepository.createEmployee(employee)
       .pipe(
         tap(res => console.log(res)),
@@ -43,7 +45,7 @@ export class EmployeesService {
       );
   }
 
-  updateEmployee(employee: IEmployee): void {
+  updateEmployee(employee: IUpdateEmployeeCommand): void {
     this.employeesRepository.updateEmployee(employee)
       .pipe(
         tap(res => console.log(res)),

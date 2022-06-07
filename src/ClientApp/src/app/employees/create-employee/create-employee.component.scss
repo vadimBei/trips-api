@@ -1,1 +1,30 @@
-@import 'bulma/css/bulma.css';
+@import "bulma/css/bulma.css";
+
+.label {
+  color: white;
+}
+
+input {
+  background-color: #182533 !important;
+  border-color: #182533 !important;
+  color: white !important;
+}
+
+.input::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.buttons {
+  button {
+    background-color: #3f96d0;
+    color: white;
+    border-color: #3f96d0;
+  }
+
+  button[type="submit"]:hover {
+    background-color: #3488ce;
+    color: white;
+    border-color: #3488ce;
+  }
+}

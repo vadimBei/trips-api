@@ -1,0 +1,69 @@
+<div class="conteiner" *ngIf="paginatedTrips$ | async as paginatedTrips">
+    <div *ngIf="paginatedTrips.items.length > 0">
+        <div class="row table-head">
+            <div class="col align-self-end">
+                <p>
+                    Type
+                </p>
+            </div>
+
+            <div class="col align-self-end">
+                <p>
+                    Date from
+                </p>
+            </div>
+
+            <div class="col align-self-end">
+                <p>
+                    Date to
+                </p>
+            </div>
+
+            <div class="col align-self-end">
+                <p>
+                    Status
+                </p>
+            </div>
+
+            <div class="col align-self-end">
+                <p>
+                    Vehicle type
+                </p>
+            </div>
+        </div>
+
+        <div *ngFor="let trip of paginatedTrips.items" class="table-body">
+            <div class="row">
+                <div class="col align-self-center">
+                    {{trip.type}}
+                </div>
+
+                <div class="col align-self-center">
+                    {{trip.dateFrom}}
+                </div>
+
+                <div class="col align-self-center">
+                    {{trip.dateTo}}
+                </div>
+
+                <div class="col align-self-center">
+                    {{trip.status}}
+                </div>
+
+                <div class="col align-self-center">
+                    {{trip.vehicleType}}
+                </div>
+            </div>
+        </div>
+
+        <nav class="pagination is-centered is-rounded" role="navigation" aria-label="pagination">
+            <button class="pagination-previous is-rounded" (click)="previousPage()" [disabled]="!hasPreviousPage">
+                Previous
+            </button>
+
+            <button class="pagination-next is-rounded" (click)="nextPage()" [disabled]="!hasNextPage">
+                Next page
+            </button>
+        </nav>
+    </div>
+</div>

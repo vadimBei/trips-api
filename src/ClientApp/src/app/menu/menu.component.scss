@@ -1,17 +1,15 @@
 @import "bulma/css/bulma.css";
 
 .menu {
+  padding-top: 1em;
   height: 100%;
-
-  .menu-label {
-    color: white;
-  }
+  background-color: #17212b;
 
   .menu-list a {
     color: white;
   }
 
   .menu-list a:hover {
-    color: black;
+    background-color: #2d5986;
   }
 }

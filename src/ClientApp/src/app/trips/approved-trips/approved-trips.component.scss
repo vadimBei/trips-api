@@ -1,0 +1,33 @@
+@import "bulma/css/bulma.css";
+
+.conteiner {
+  color: white;
+
+  .row {
+    height: 3em;
+  }
+
+  .table-head {
+    .col {
+      text-align: center;
+    }
+  }
+
+  .table-body {
+    .row {
+      background-color: #2b5278;
+      border-radius: 1em;
+      margin: 1em 0;
+    }
+  }
+}
+
+.pagination {
+  margin-top: 2em;
+
+  button {
+    background-color: #3f96d0;
+    color: white;
+    border-color: #3f96d0;
+  }
+}

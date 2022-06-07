@@ -1,14 +1,48 @@
-@import 'bulma/css/bulma.css';
+@import "bulma/css/bulma.css";
 
 .search {
-    margin-top: 1em;
-    width: 15em !important;
+  margin-top: 1em;
+  width: 15em !important;
+  background-color: #182533;
+  border-color: #182533;
+  color: white;
+}
+
+.search::placeholder {
+  color: white;
+  opacity: 1;
 }
 
 .card {
-    margin: 1em 0;
+  margin: 1em 0;
+  background-color: #2b5278;
+  border-color: #2b5278;
+  color: white;
+
+  .title {
+    color: white;
+  }
+
+  .subtitle {
+    color: white;
+  }
 }
 
+.buttons {
+  button {
+    background-color: #3f96d0;
+    color: white;
+    border-color: #3f96d0;
+  }
+}
+
+
 .pagination {
-    margin-top: 2em;
+  margin-top: 2em;
+
+  button {
+    background-color: #3f96d0;
+    color: white;
+    border-color: #3f96d0;
+  }
 }

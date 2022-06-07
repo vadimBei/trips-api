@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EmployeesListComponent } from './employees-list/employees-list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { EmployeeRoutingModule } from './employee-routing.module';
+import { EmployeesListComponent } from './employees-list/employees-list.component';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
